@@ -1,0 +1,29 @@
+>>> from main import db
+C:\Users\venug\AppData\Local\Programs\Python\Python36\lib\site-packages\flask_sqlalchemy\__init__.py:835: FSADeprecationWarning: SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and will be disabled by default in the future.  Set it to True or False to suppress this warning.
+  'SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and '
+>>> db.create_all()
+>>> from main import User
+>>> user_1 = User(username = 'venu', email = 'venu@gmail.com', password = '9908')
+>>> db.session.add(user_1)
+>>> user_2 = User(username = 'lava', email = 'lava@gmail.com', password = '9908')
+>>> db.session.add(user_2)
+>>> db.session.commit()
+>>> User.query.all()
+[User('venu','venu@gmail.com','default.jpg'), User('lava','lava@gmail.com','default.jpg')]
+>>> User.query.first()
+User('venu','venu@gmail.com','default.jpg')
+>>> User.query.filter_by(username = 'venu').all()
+[User('venu','venu@gmail.com','default.jpg')]
+>>> user = User.query.filter_by(username = 'venu').first()
+>>> user
+User('venu','venu@gmail.com','default.jpg')
+>>> user.id
+1
+>>> user = User.query.get(1)
+>>> user
+User('venu','venu@gmail.com','default.jpg')
+>>> db.drop_all()
+
+
+to hash the password we use 
+>>>pip install flask-bcrypt
